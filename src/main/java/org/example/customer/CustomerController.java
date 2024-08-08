@@ -20,7 +20,7 @@ CustomerRepository customerRepository;
 
     @GetMapping("")
     public List<Customer> getAllCustomers(){
-        return customerRepository.getAll();
+        return customerRepository.findAll();
 
     }
 

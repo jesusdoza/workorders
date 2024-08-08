@@ -1,15 +1,32 @@
 package org.example.customer;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import java.io.Serial;
+
+@Entity(name = "customer")
 public class Customer {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String company;
 
 
-    public Customer(String id, String name, String company) {
+
+
+    public Customer(Long id, String name, String company) {
         this.id = id;
         this.name = name;
         this.company = company;
+    }
+
+    public Customer() {
+
     }
 
     public String getName() {
@@ -35,5 +52,13 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", company='" + company + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
