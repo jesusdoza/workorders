@@ -1,4 +1,4 @@
-package org.example.customer;
+package org.workorder.customer;
 
 
 
@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.io.Serial;
 import java.util.List;
-import java.util.Objects;
 
 
 @Repository
