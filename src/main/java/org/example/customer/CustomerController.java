@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
 
-CustomerRepository customerRepository;
+private CustomerRepository customerRepository;
 
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
