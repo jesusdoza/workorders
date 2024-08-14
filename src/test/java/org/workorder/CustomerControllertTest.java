@@ -1,9 +1,6 @@
 package org.workorder;
 
-import org.workorder.customer.Customer;
-import org.workorder.customer.CustomerRepository;
 import org.junit.jupiter.api.Test;
-
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.workorder.customer.Customer;
+import org.workorder.customer.CustomerRepository;
 
 import java.util.List;
 
@@ -21,11 +20,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class CustomerControllertTest {
-
-
     @MockBean
     private CustomerRepository customerRepository;
 
+    
     @Autowired
     private MockMvc mvc;
 
@@ -36,9 +34,5 @@ class CustomerControllertTest {
 
         this.mvc.perform(get("/customer"))
                 .andExpect(status().isOk());
-
-
-
-
     }
 }

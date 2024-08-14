@@ -1,27 +1,35 @@
 package org.workorder;
 
-import org.workorder.customer.Customer;
-import org.mockito.Mockito;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
+import org.springframework.context.annotation.*;
+
+import org.workorder.customer.Customer;
 import org.workorder.customer.CustomerRepository;
+
+import java.util.List;
 
 @Configuration
 @Profile("test")
 public class TestConfig {
 
-    @Bean
-    @Primary
-    public CustomerRepository database() {
-        return Mockito.mock(CustomerRepository.class);
-    }
+//    @MockBean
+//    private CustomerRepository customerRepository;
+//
+//
+//
+//    @Bean
+//    @Primary
+//    public CustomerRepository customerRepository() {
+//        List<Customer> customers = List.of(new Customer(1L, "John Doe", "Acme Inc."));
+//        CustomerRepository mockCustomerRepository = Mockito.mock(CustomerRepository.class);
+//
+//       BDDMockito.given(mockCustomerRepository.findAll()).willReturn(customers);
+//
+//        return mockCustomerRepository;
+//    }
 
-    @Bean
-    @Primary
-    public Customer customerEntity() {
-        return Mockito.mock(Customer.class);
-    }
+
+
 }
