@@ -1,7 +1,7 @@
-package org.example;
+package org.workorder;
 
-import org.example.customer.Customer;
-import org.example.customer.CustomerRepository;
+import org.workorder.customer.Customer;
+import org.workorder.customer.CustomerRepository;
 import org.junit.jupiter.api.Test;
 
 import org.mockito.Mockito;
