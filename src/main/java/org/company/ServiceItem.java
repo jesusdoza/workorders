@@ -12,8 +12,6 @@ public class ServiceItem {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
-
-
     private String description;
     private String name;
     private String image;
