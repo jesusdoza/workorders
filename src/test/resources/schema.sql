@@ -18,12 +18,13 @@ CREATE TABLE IF NOT EXISTS part
 );
 
 CREATE TABLE IF NOT EXISTS service_item(
-    id BIGINT PRIMARY KEY,
+  id BIGINT PRIMARY KEY,
   description TEXT,
   name TEXT,
   image TEXT,
   part_number TEXT,
-  manufacturer TEXT
+  manufacturer TEXT,
+  serial_number TEXT
 );
 
 

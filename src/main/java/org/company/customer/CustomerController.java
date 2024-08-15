@@ -19,7 +19,6 @@ public class CustomerController {
 
     @GetMapping("")
     public List<Customer> getAllCustomers() {
-        System.out.println("tdfafdsfdsdas");
         return customerRepository.findAll();
 
     }

@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "service_item")
 public class ServiceItem {
 
     @Id
@@ -18,8 +18,11 @@ public class ServiceItem {
     private String part_number;
     private String manufacturer;
 
-    public ServiceItem(String name) {
+    private String serial_number;
+
+    public ServiceItem(String name, String serial) {
         this.name = name;
+        this.serial_number = serial;
     }
 
     public ServiceItem() {
@@ -72,5 +75,13 @@ public class ServiceItem {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public String getSerial_number() {
+        return serial_number;
+    }
+
+    public void setSerial_number(String serial_number) {
+        this.serial_number = serial_number;
     }
 }
