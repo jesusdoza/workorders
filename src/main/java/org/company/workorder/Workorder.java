@@ -1,4 +1,4 @@
-package org.workorder.workorder;
+package org.company.workorder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,16 +9,17 @@ import java.time.LocalDateTime;
 
 
 @Entity(name = "workorder")
-class Workorder {
+public class Workorder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String notes;
-    private String description;
-    private LocalDateTime date_arrived;
-    private LocalDateTime created_at;
-    private String status;
+    private String title = "";
+    private String notes = "";
+    private String description = "";
+    private LocalDateTime date_arrived = LocalDateTime.now();
+    private LocalDateTime created_at = LocalDateTime.now();
+    private String status = "pending";
     private Long technician;
     private Long item_id;
     private Long customer_id;
@@ -28,9 +29,13 @@ class Workorder {
 
     }
 
+    public Workorder(String title) {
+        this.title = title;
+    }
+
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -38,7 +43,7 @@ class Workorder {
     }
 
     public String getNotes() {
-        return notes;
+        return this.notes;
     }
 
     public void setNotes(String notes) {
@@ -46,7 +51,7 @@ class Workorder {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -54,7 +59,7 @@ class Workorder {
     }
 
     public LocalDateTime getDate_arrived() {
-        return date_arrived;
+        return this.date_arrived;
     }
 
     public void setDate_arrived(LocalDateTime date_arrived) {
@@ -62,7 +67,7 @@ class Workorder {
     }
 
     public LocalDateTime getCreated_at() {
-        return created_at;
+        return this.created_at;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
@@ -70,7 +75,7 @@ class Workorder {
     }
 
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(String status) {
@@ -78,7 +83,7 @@ class Workorder {
     }
 
     public Long getTechnician() {
-        return technician;
+        return this.technician;
     }
 
     public void setTechnician(Long technician) {
@@ -86,7 +91,7 @@ class Workorder {
     }
 
     public Long getItem_id() {
-        return item_id;
+        return this.item_id;
     }
 
     public void setItem_id(Long item_id) {
@@ -94,7 +99,7 @@ class Workorder {
     }
 
     public Long getCustomer_id() {
-        return customer_id;
+        return this.customer_id;
     }
 
     public void setCustomer_id(Long customer_id) {

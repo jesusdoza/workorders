@@ -1,4 +1,4 @@
-package org.workorder.workorder;
+package org.company.workorder;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

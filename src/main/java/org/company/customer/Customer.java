@@ -1,4 +1,4 @@
-package org.workorder.customer;
+package org.company.customer;
 
 
 import jakarta.persistence.Entity;
@@ -15,8 +15,6 @@ public class Customer {
     private String company;
 
 
-
-
     public Customer(Long id, String name, String company) {
         this.id = id;
         this.name = name;
@@ -28,7 +26,7 @@ public class Customer {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -36,7 +34,7 @@ public class Customer {
     }
 
     public String getCompany() {
-        return company;
+        return this.company;
     }
 
     public void setCompany(String company) {
@@ -53,7 +51,7 @@ public class Customer {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
