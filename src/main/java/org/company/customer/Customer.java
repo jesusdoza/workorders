@@ -13,6 +13,7 @@ public class Customer {
     private Long id;
     private String name;
     private String company;
+    private String contact_info;
 
 
     public Customer(Long id, String name, String company) {
@@ -41,20 +42,29 @@ public class Customer {
         this.company = company;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", company='" + company + '\'' +
-                '}';
-    }
-
     public Long getId() {
         return this.id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getContact_info() {
+        return contact_info;
+    }
+
+    public void setContact_info(String contact_info) {
+        this.contact_info = contact_info;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", company='" + company + '\'' +
+                ", contact_info='" + contact_info + '\'' +
+                '}';
     }
 }

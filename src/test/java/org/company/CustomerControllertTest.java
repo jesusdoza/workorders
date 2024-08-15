@@ -21,8 +21,6 @@ import java.util.List;
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class CustomerControllertTest {
-//    @MockBean
-//    private CustomerRepository customerRepository;
 
 
     @Autowired
