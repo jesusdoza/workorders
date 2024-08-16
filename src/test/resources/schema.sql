@@ -10,7 +10,7 @@ create table IF NOT EXISTS customer
 
 CREATE TABLE IF NOT EXISTS part
 (
-   id BIGINT PRIMARY KEY,
+  id BIGINT PRIMARY KEY,
   name TEXT NOT NULL,
   vendor TEXT,
   part_number TEXT,
