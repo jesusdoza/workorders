@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @AutoConfigureMockMvc
-@SpringBootTest
+@SpringBootTest(classes = WorkOrdersApp.class)
 public class TechnicianControllerTest {
 
     @Autowired
@@ -39,14 +39,15 @@ public class TechnicianControllerTest {
                 new Technician("techname2"),
                 new Technician("techname3")
         );
-        this.repository.saveAll(items);
+        repository.saveAll(items);
 
 
         var response = this.mvc.perform(get("/tech"));
 
         System.out.println(response.andReturn().getRequest());
 
+//        response.andExpect(status().isOk())
         response.andExpect(status().isOk())
-                .andExpect(jsonPath("$", Matchers.hasSize(3)));
+                .andExpect(jsonPath("$", Matchers.hasSize(items.size())));
     }
 }

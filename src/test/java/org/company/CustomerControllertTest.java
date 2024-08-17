@@ -33,7 +33,8 @@ class CustomerControllertTest {
     void shouldReturnCustomersListAll() throws Exception {
         List<Customer> list = List.of(
                 new Customer(1L, "John Doe", "Acme Inc."),
-                new Customer(2L, "Jane Smith", "Beta LLC")
+                new Customer(2L, "Jane Smith", "Beta LLC"),
+                new Customer(3L, "Jane Smith", "Beta LLC")
         );
 
         customerRepository.saveAll(list);
@@ -41,10 +42,8 @@ class CustomerControllertTest {
 
         var response = this.mvc.perform(get("/customer"));
 
-        System.out.println(response);
 
         response.andExpect(status().isOk())
-//                .andExpect(jsonPath("$", Matchers.hasSize(customers.size())));
                 .andExpect(jsonPath("$", Matchers.hasSize(list.size())));
 
 
