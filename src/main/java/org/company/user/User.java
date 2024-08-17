@@ -22,7 +22,6 @@ public class User {
 
 
     public User(UUID id, String email, String password, Set<UserRole> roles) {
-        this.id = id;
         this.email = email;
         this.password = password;
         this.roles = roles;

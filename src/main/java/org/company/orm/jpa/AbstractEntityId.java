@@ -3,7 +3,6 @@ package org.company.orm.jpa;
 import jakarta.persistence.MappedSuperclass;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Objects;
 
 @MappedSuperclass
