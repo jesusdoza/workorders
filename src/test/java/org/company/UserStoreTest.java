@@ -27,7 +27,6 @@ public class UserStoreTest {
     @Test
     void addUser() {
 
-//        UUID uuid = UUID.randomUUID();
         HashSet<UserRole> roles = new HashSet<>();
 
         roles.add(UserRole.USER);
