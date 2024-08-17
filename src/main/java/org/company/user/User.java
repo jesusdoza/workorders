@@ -16,12 +16,13 @@ public class User {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @NotNull
     private Set<UserRole> roles;
 
 
     public User(UUID id, String email, String password, Set<UserRole> roles) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.roles = roles;
