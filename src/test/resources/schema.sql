@@ -1,7 +1,4 @@
 
-
-
-
 create table IF NOT EXISTS customer
 (
   id BIGINT PRIMARY KEY,
@@ -10,7 +7,7 @@ create table IF NOT EXISTS customer
   contact_info TEXT
 );
 
-create table IF NOT EXISTS user_table
+create table IF NOT EXISTS users
 (
   id UUID PRIMARY KEY,
   name TEXT,
@@ -18,8 +15,6 @@ create table IF NOT EXISTS user_table
   password TEXT NOT NULL,
   contact_info TEXT
 );
-
-
 CREATE TABLE IF NOT EXISTS part
 (
   id BIGINT PRIMARY KEY,

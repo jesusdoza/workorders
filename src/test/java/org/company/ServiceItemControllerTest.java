@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,7 +32,7 @@ public class ServiceItemControllerTest {
 
         this.repository.saveAll(items);
 
-        var response = this.mvc.perform(get("/service_item"))
+        var response = this.mvc.perform(get("/api/service_item").with(jwt()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", Matchers.hasSize(items.size())));
 

@@ -12,7 +12,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,9 +41,9 @@ public class PartControllerTest {
         this.repository.saveAll(items);
 
 
-        var response = this.mvc.perform(get("/part"))
+        var response = this.mvc.perform(get("/api/part").with(jwt()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", Matchers.hasSize(items.size())));
+                .andExpect(jsonPath("$", Matchers.hasSize(items.size()))).andDo(print());
 
 
     }

@@ -8,7 +8,7 @@ import java.util.UUID;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     private UUID id;

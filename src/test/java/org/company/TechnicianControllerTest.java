@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,11 +43,7 @@ public class TechnicianControllerTest {
         repository.saveAll(items);
 
 
-        var response = this.mvc.perform(get("/tech"));
-
-        System.out.println(response.andReturn().getRequest());
-
-//        response.andExpect(status().isOk())
+        var response = mvc.perform(get("/api/tech").with(jwt()));
         response.andExpect(status().isOk())
                 .andExpect(jsonPath("$", Matchers.hasSize(items.size())));
     }

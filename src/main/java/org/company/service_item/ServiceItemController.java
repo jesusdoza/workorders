@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/service_item")
+@RequestMapping("/api/service_item")
 public class ServiceItemController {
 
     private ServiceItemRepository repository;
@@ -18,7 +18,6 @@ public class ServiceItemController {
 
     @GetMapping("")
     public List<ServiceItem> getAllServiceItems() {
-
-        return this.repository.findAll();
+        return repository.findAll();
     }
 }
