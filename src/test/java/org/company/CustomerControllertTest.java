@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -40,12 +41,12 @@ class CustomerControllertTest {
         customerRepository.saveAll(list);
 
 
-        var response = this.mvc.perform(get("/customer"));
+        var response = mvc.perform(get("/customer"));
 
 
         response.andExpect(status().isOk())
                 .andExpect(jsonPath("$", Matchers.hasSize(list.size())));
-
+        response.andDo(print());
 
     }
 }
