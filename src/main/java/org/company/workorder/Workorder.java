@@ -17,11 +17,10 @@ public class Workorder {
     private LocalDateTime date_arrived = LocalDateTime.now();
     private LocalDateTime created_at = LocalDateTime.now();
     private String status = "pending";
-
+    private Long service_item_id;
     @Column(name = "technician_id")
     private Long technician;
     private Long customer_id;
-
 
     public Workorder() {
 
@@ -31,6 +30,21 @@ public class Workorder {
         this.title = title;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getService_item_id() {
+        return service_item_id;
+    }
+
+    public void setService_item_id(Long service_item_id) {
+        this.service_item_id = service_item_id;
+    }
 
     public long getId() {
         return this.id;
