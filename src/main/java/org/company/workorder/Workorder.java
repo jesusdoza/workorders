@@ -1,14 +1,11 @@
 package org.company.workorder;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 
-@Entity(name = "workorder")
+@Entity(name = "work_order")
 public class Workorder {
 
     @Id
@@ -20,8 +17,9 @@ public class Workorder {
     private LocalDateTime date_arrived = LocalDateTime.now();
     private LocalDateTime created_at = LocalDateTime.now();
     private String status = "pending";
+
+    @Column(name = "technician_id")
     private Long technician;
-    private Long item_id;
     private Long customer_id;
 
 
@@ -90,13 +88,6 @@ public class Workorder {
         this.technician = technician;
     }
 
-    public Long getItem_id() {
-        return this.item_id;
-    }
-
-    public void setItem_id(Long item_id) {
-        this.item_id = item_id;
-    }
 
     public Long getCustomer_id() {
         return this.customer_id;
