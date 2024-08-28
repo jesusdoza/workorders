@@ -1,39 +1,96 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
-  title: WorkOrders
-  version: '1.0.0'
-  description: |
-    Work order management system
+  title: Sample API
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.1.9
 
-  
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+
+
 
 servers:
   - url: http://api.example.com/v1
     description: dev server
 
- 
 
-defaultContentType: application/json
+
 paths:
   /workorders:
-     get:
+    get:
       summary: Returns a list of users.
+      security:
+        - oauthKeyCloakOpenId:
+            - openid
       description: Optional extended description in CommonMark or HTML.
       responses:
-        '200':    # status code
+        '200': # status code
           description: A JSON array of user names
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
-                items: 
+                items:
                   type: string
 
 components:
+
+  securitySchemes:
+    oauthKeyCloakOpenId:
+      description: using local dev ouath server oauthKeyCloak
+      type: openIdConnect
+      openIdConnectUrl: http://localhost:8180/realms/workorders/.well-known/openid-configuration
+
+
+
   schemas:
+    Part:
+      type: object
+    WorkOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        title:
+          type: string
+          example: "Repair Order #1"
+        notes:
+          type: string
+          example: "Customer mentioned an issue with the power supply."
+        description:
+          type: string
+          example: "This is a detailed description of the work order."
+        date_arrived:
+          type: string
+          format: date-time
+          example: "2024-08-22T12:34:56Z"
+        created_at:
+          type: string
+          format: date-time
+          example: "2024-08-22T12:34:56Z"
+        status:
+          type: string
+          example: "pending"
+        technician:
+          type: integer
+          format: int64
+          example: 456
+        item_id:
+          type: integer
+          format: int64
+          example: 789
+        customer_id:
+          type: integer
+          format: int64
+          example: 101112
+
+    Technician:
+      type: object
+
+    ServiceItem:
+      type: object
+    Customer:
+      type: object
     User:
       type: object
       properties:
@@ -44,6 +101,6 @@ components:
           type: string
           example: Arthur Dent
       # Both properties are required
-      required:  
+      required:
         - id
         - name
