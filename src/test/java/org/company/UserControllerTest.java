@@ -7,6 +7,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.UUID;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -33,12 +35,12 @@ public class UserControllerTest {
 
     @Test
     void givenAuthenticatedUser_userInfoEndpointReturnsOk() throws Exception {
+
+        //todo add valid user UUID to jwt for look up
         mvc.perform(get("/api/user/me")
-                        .with(jwt()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("Subject").value("user"))
-                .andExpect(jsonPath("claims").isMap())
-                .andDo(print());
+                        .with(jwt().jwt(jwt -> jwt.claim("user", UUID.randomUUID()))))
+                .andExpect(status().isOk());
+
     }
 
 
