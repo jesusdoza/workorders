@@ -34,9 +34,8 @@ public class UserStoreTest {
 
 
         List<User> items = List.of(
-                new User(new AuthServerId(UUID.randomUUID()), "bob1@bob.com", "password", roles),
-                new User(new AuthServerId(UUID.randomUUID()), "bob2@bob.com", "password", roles),
-                new User(new AuthServerId(UUID.randomUUID()), "bob3@bob.com", "password", roles)
+                new User(new AuthServerId(UUID.randomUUID()), "bob1@bob.com", "password", roles,UUID.randomUUID().toString()),
+
         );
         repository.saveAll(items);
 

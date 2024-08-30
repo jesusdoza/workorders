@@ -13,6 +13,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private UUID userId = UUID.randomUUID();
     private AuthServerId authServerId;// when using oauth this id is used to identify record
     private String email;
     private String username;
@@ -30,15 +32,6 @@ public class User {
         this.username = username;
         this.authServerId = authServerId;
         this.mobileToken = mobileToken;
-        this.roles = roles;
-    }
-//    private String password;
-
-    //oauth user with out specified uuid
-    public User(AuthServerId authServerId, String email, String username, Set<UserRole> roles) {
-        this.authServerId = authServerId;
-        this.email = email;
-        this.username = username;
         this.roles = roles;
     }
 
@@ -85,5 +78,34 @@ public class User {
 
     public void setRoles(@NotNull Set<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", authServerId=" + authServerId +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", mobileToken='" + mobileToken + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
