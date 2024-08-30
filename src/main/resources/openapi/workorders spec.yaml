@@ -1,17 +1,12 @@
 openapi: 3.0.1
 info:
-  title: Sample API
-  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  title: Workorders API
+  description: API to manage workorders
   version: 0.1.9
-
-
-
 
 servers:
   - url: http://api.example.com/v1
     description: dev server
-
-
 
 paths:
   /workorders:
@@ -42,8 +37,41 @@ components:
 
 
   schemas:
+    UserRole:
+      description: roles available for users
+      type: string
+      enum:
+        - USER
+        - ADMIN
+      default: USER
     Part:
       type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+          description: "The unique identifier for a part."
+        name:
+          type: string
+          example: "Widget"
+          description: "The name of the part."
+        part_number:
+          type: string
+          example: "12345-678"
+          description: "The part number associated with the part."
+        description:
+          type: string
+          example: "A standard widget used in various machines."
+          description: "A brief description of the part."
+        vendor:
+          type: string
+          example: "Acme Corp."
+          description: "The vendor or supplier of the part."
+      required:
+        - name
+        - part_number
+
     WorkOrder:
       type: object
       properties:
@@ -86,13 +114,78 @@ components:
 
     Technician:
       type: object
+      properties:
+        id:
+          type: number
+          format: int64
+          example: 1e20260f-f91d-4cb9-8406-1a0ae24c0028
+        name:
+          type: string
+          example:
+            - joe technician
+
+
 
     ServiceItem:
       type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 12345
+          description: "The unique identifier for the part."
+        description:
+          type: string
+          example: "A detailed description of the part."
+          description: "A description of the part."
+        name:
+          type: string
+          example: "Widget A"
+          description: "The name of the part."
+        image:
+          type: string
+          format: uri
+          example: "http://example.com/images/part.jpg"
+          description: "A URL to the image of the part."
+        part_number:
+          type: string
+          example: "WIDGET-001"
+          description: "The part number assigned to the part."
+        manufacturer:
+          type: string
+          example: "Widget Corp."
+          description: "The name of the manufacturer of the part."
+        serial_number:
+          type: string
+          example: "SN1234567890"
+          description: "The serial number of the part."
+      required:
+        - id
+        - name
+        - part_number
+        - manufacturer
+
     Customer:
       type: object
+      properties:
+        id:
+          type: number
+          format: int64
+          example: a3a9af3a-945c-4513-87e4-a10ea38bfc78
+        name:
+          type: string
+          example:
+            - bob name
+        company:
+          type: string
+          example:
+            - company name
     User:
       type: object
+      required:
+        - id
+        - name
+        - roles
       properties:
         id:
           type: integer
@@ -100,7 +193,12 @@ components:
         name:
           type: string
           example: Arthur Dent
+        userId:
+          type: string
+          example: af467b47-5ad3-475c-88dd-ebd77720d393
+        authServerId:
+          type: string
+          example: a562db2f-8e1c-46c1-99b6-9c087cdd4fb2
+        roles:
+          $ref: '#/components/schemas/UserRole'
       # Both properties are required
-      required:
-        - id
-        - name
