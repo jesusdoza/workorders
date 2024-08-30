@@ -13,6 +13,9 @@ public class WebSecurityConfiguration {
 
     @Bean
     SecurityFilterChain configureSecurityFilterChain(HttpSecurity http) throws Exception {
+
+        //allow any OPTIONS requests to any api route
+        // all other requests must be authenticated
         http.authorizeHttpRequests(authorizeRequest -> authorizeRequest.requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().authenticated()).oauth2ResourceServer(it -> it.jwt(Customizer.withDefaults()));
