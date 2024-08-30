@@ -27,10 +27,10 @@ public class UserController {
     @GetMapping("/me")
     public Map<String, Object> myself(@AuthenticationPrincipal Jwt jwt) {
 
-//        Optional<User> userByAuthServerId = userService.findUserByAuthServerId(new AuthServerId(UUID.fromString(jwt.getSubject())));
-//
-//        userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
         Map<String, Object> result = new HashMap<>();
+        Optional<User> userByAuthServerId = userService.findUserByAuthServerId(new AuthServerId(UUID.fromString(jwt.getSubject())));
+
+        userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
 
 
         result.put("subject", jwt.getSubject());

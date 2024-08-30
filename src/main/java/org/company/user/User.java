@@ -15,6 +15,9 @@ public class User {
     private Long id;
 
     private UUID userId = UUID.randomUUID();
+
+
+    @Column(unique = true)
     private AuthServerId authServerId;// when using oauth this id is used to identify record
     private String email;
     private String username;
