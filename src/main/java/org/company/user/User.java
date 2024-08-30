@@ -11,44 +11,48 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "users")
 public class User {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private AuthServerId authServerId;// when using oauth this id is used to identify record
     private String email;
+    private String username;
     private String mobileToken; //used to send data to user app
-    private String password;
-
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @NotNull
-    private Set<UserRole> roles;
+    private Set<UserRole> roles = Set.of(UserRole.USER);
 
 
-    public User(UUID id, AuthServerId authServerId, String email, String password, Set<UserRole> roles, String mobileToken) {
-        this.id = id;
+    //oauth user with specified uuid
+    public User(AuthServerId authServerId, String username, String email, Set<UserRole> roles, String mobileToken) {
+
         this.email = email;
+        this.username = username;
         this.authServerId = authServerId;
         this.mobileToken = mobileToken;
-        this.password = password;
+        this.roles = roles;
+    }
+//    private String password;
+
+    //oauth user with out specified uuid
+    public User(AuthServerId authServerId, String email, String username, Set<UserRole> roles) {
+        this.authServerId = authServerId;
+        this.email = email;
+        this.username = username;
         this.roles = roles;
     }
 
-    public User(UUID id, String email, String password, Set<UserRole> roles) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
 
     protected User() {
 
     }
 
-    public UUID getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public AuthServerId getAuthServerId() {
@@ -73,14 +77,6 @@ public class User {
 
     public void setMobileToken(String mobileToken) {
         this.mobileToken = mobileToken;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public @NotNull Set<UserRole> getRoles() {

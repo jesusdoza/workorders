@@ -1,6 +1,7 @@
 package org.company;
 
 import org.company.technician.Technician;
+import org.company.user.AuthServerId;
 import org.company.user.User;
 import org.company.user.UserRepository;
 import org.company.user.UserRole;
@@ -33,9 +34,9 @@ public class UserStoreTest {
 
 
         List<User> items = List.of(
-                new User(UUID.randomUUID(), "bob1@bob.com", "password", roles),
-                new User(UUID.randomUUID(), "bob2@bob.com", "password", roles),
-                new User(UUID.randomUUID(), "bob3@bob.com", "password", roles)
+                new User(new AuthServerId(UUID.randomUUID()), "bob1@bob.com", "password", roles),
+                new User(new AuthServerId(UUID.randomUUID()), "bob2@bob.com", "password", roles),
+                new User(new AuthServerId(UUID.randomUUID()), "bob3@bob.com", "password", roles)
         );
         repository.saveAll(items);
 
