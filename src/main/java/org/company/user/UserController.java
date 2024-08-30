@@ -43,6 +43,8 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@AuthenticationPrincipal Jwt jwt, @RequestBody CreateUserRequest request) {
         CreateUserParameters parameters = request.toParameters(jwt);
+
+
         User user = userService.createUser(parameters);
 
         //create a DTO from user instance

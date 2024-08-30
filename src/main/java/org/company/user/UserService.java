@@ -26,6 +26,7 @@ public class UserService {
 
         User user = new User(createUserParameters.authServerId(), createUserParameters.username(), createUserParameters.email(), Set.of(UserRole.USER), createUserParameters.mobileToken());
 
+        //todo should handle unique only auth_server_id, mobile token also user_id also needs to be unique
         return repository.save(user);
 
     }

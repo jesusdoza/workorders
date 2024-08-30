@@ -1,33 +1,30 @@
 package org.company.user.web;
 
+import org.company.user.AuthServerId;
 import org.company.user.User;
 
 import java.util.UUID;
 
 public class UserDto {
-    private UUID id;
+    private UUID userId;
     private String username;
     private String email;
+    private String mobileToken;
+    private UUID authServerId;
 
-
-    public UserDto(UUID id, String username, String email) {
-        this.id = id;
+    public UserDto(UUID userId, String username, String email, String mobileToken, AuthServerId authServerId) {
+        this.userId = userId;
         this.username = username;
         this.email = email;
+        this.mobileToken = mobileToken;
+        this.authServerId = authServerId.value();
 
     }
 
     public static UserDto fromUser(User user) {
-        return new UserDto(user.getAuthServerId().value(), user.getUsername(), user.getEmail());
+        return new UserDto(user.getAuthServerId().value(), user.getUsername(), user.getEmail(), user.getMobileToken(), user.getAuthServerId());
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -43,5 +40,29 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMobileToken() {
+        return mobileToken;
+    }
+
+    public void setMobileToken(String mobileToken) {
+        this.mobileToken = mobileToken;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public UUID getAuthServerId() {
+        return authServerId;
+    }
+
+    public void setAuthServerId(UUID authServerId) {
+        this.authServerId = authServerId;
     }
 }

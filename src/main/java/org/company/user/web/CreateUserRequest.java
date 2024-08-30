@@ -13,6 +13,8 @@ public record CreateUserRequest(String mobileToken) {
 
         String email = jwt.getClaimAsString("email");
         String username = jwt.getClaimAsString("preferred_username");
+
+
         return new CreateUserParameters(authServerId, email, username, mobileToken);
     }
 }
