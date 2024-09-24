@@ -55,7 +55,20 @@ CREATE TABLE IF NOT EXISTS work_order
   FOREIGN KEY (technician_id) REFERENCES technician(id)
 );
 
+CREATE TABLE IF NOT EXISTS work_order_entry
+(
+  id BIGINT PRIMARY KEY,
+  created_at DATE DEFAULT CURRENT_DATE NOT NULL,
+  work_order_id BIGINT REFERENCES work_order(id),
+  service_item_id BIGINT REFERENCES service_item(id)
+);
 
+CREATE TABLE IF NOT EXISTS parts_available
+(
+   id BIGINT PRIMARY KEY,
+  service_item_id bigint references service_item(id),
+  part_id bigint references part(id)
+);
 
 --OLDER VERSIONS
 --create table IF NOT EXISTS customer
