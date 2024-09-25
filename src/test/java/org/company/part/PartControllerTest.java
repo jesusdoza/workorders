@@ -1,50 +1,48 @@
-package org.company;
+package org.company.part;
 
-
-import org.company.part.Part;
-import org.company.technician.Technician;
-import org.company.technician.TechnicianRepository;
+import org.company.WorkOrdersApp;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@AutoConfigureMockMvc
 @SpringBootTest(classes = WorkOrdersApp.class)
-public class TechnicianControllerTest {
+@AutoConfigureMockMvc
+//@ActiveProfiles("test")
+public class PartControllerTest {
+
 
     @Autowired
     private MockMvc mvc;
-
-
     @Autowired
-    private TechnicianRepository repository;
+    private PartRepository repository;
 
 
     @Test
+    void shouldReturnPartsListAll() throws Exception {
 
-    public void getAllTechnicians() throws Exception {
-        List<Technician> items = List.of(
-                new Technician("techname1"),
-                new Technician("techname2"),
-                new Technician("techname3")
+        List<Part> items = List.of(
+                new Part("hot chip"),
+                new Part("resistor"),
+                new Part("resistor")
         );
-        repository.saveAll(items);
+        this.repository.saveAll(items);
 
 
-        var response = mvc.perform(get("/api/tech").with(jwt()));
-        response.andExpect(status().isOk())
-                .andExpect(jsonPath("$", Matchers.hasSize(items.size())));
+        var response = this.mvc.perform(get("/api/part").with(jwt()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", Matchers.hasSize(items.size()))).andDo(print());
+
+
     }
 }
