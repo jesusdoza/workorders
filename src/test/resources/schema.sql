@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS work_order
 (
   id BIGINT PRIMARY KEY,
   created_at DATE DEFAULT CURRENT_DATE NOT NULL,
+  modified_at DATE DEFAULT CURRENT_DATE NOT NULL,
   status TEXT,
   description TEXT,
   notes TEXT,

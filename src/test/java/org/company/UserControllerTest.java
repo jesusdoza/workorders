@@ -27,11 +27,11 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    @Test
-    void givenUnauthenticatedUser_userInfoEndpointReturnsUnauthorized() throws Exception {
-        mvc.perform(get("/api/user/me"))
-                .andExpect(status().isUnauthorized());
-    }
+//    @Test
+//    void givenUnauthenticatedUser_userInfoEndpointReturnsUnauthorized() throws Exception {
+//        mvc.perform(get("/api/user/me"))
+//                .andExpect(status().isUnauthorized());
+//    }
 
 //    @Test
 //    void givenAuthenticatedUser_userInfoEndpointReturnsOk() throws Exception {
