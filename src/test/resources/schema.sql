@@ -1,4 +1,9 @@
 
+CREATE TABLE IF NOT EXISTS organization(
+ id BIGINT PRIMARY KEY,
+ name TEXT
+ );
+
 create table IF NOT EXISTS customer
 (
   id BIGINT PRIMARY KEY,
@@ -9,11 +14,15 @@ create table IF NOT EXISTS customer
 
 create table IF NOT EXISTS users
 (
-  id UUID PRIMARY KEY,
+  id BIGINT PRIMARY KEY,
+  authProvider TEXT,
+  authServerId TEXT,
   name TEXT,
   email TEXT NOT NULL,
-  password TEXT NOT NULL,
-  contact_info TEXT
+  username TEXT,
+  password TEXT,
+  organization_id BIGSERIAL,
+  FOREIGN KEY (organization_id ) REFERENCES organization(id)
 );
 CREATE TABLE IF NOT EXISTS part
 (
