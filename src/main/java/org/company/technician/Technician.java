@@ -9,16 +9,17 @@ import jakarta.persistence.Id;
 @Entity(name = "technician")
 public class Technician {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
+    private Long organization;
 
     public Technician(String name) {
         this.name = name;
     }
 
     public Technician() {
-        this.name = name;
+
     }
 
 
@@ -36,5 +37,13 @@ public class Technician {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Long organization) {
+        this.organization = organization;
     }
 }

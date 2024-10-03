@@ -47,7 +47,9 @@ CREATE TABLE IF NOT EXISTS service_item(
 CREATE TABLE IF NOT EXISTS technician
 (
   id BIGINT PRIMARY KEY,
-  name TEXT
+  name TEXT,
+  organization_id BIGSERIAL,
+  FOREIGN KEY (organization_id ) REFERENCES organization(id)
 );
 
 CREATE TABLE IF NOT EXISTS work_order
