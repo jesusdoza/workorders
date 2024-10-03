@@ -1,19 +1,14 @@
 package org.company;
 
-import org.company.user.UserRepository;
-import org.junit.jupiter.api.Test;
+import org.company.user.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.UUID;
-
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest(classes = WorkOrdersApp.class)
@@ -23,7 +18,7 @@ public class UserControllerTest {
 
 
     @Autowired
-    UserRepository repository;
+    UserProfileRepository repository;
     @Autowired
     private MockMvc mvc;
 
