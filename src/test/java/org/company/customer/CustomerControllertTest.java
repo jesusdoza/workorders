@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = WorkOrdersApp.class)
 @AutoConfigureMockMvc
 //@ActiveProfiles("test")
-//@Sql({"/customertable.sql"})
+//@Sql({"/customertable.text"})
 class CustomerControllertTest {
 
 
