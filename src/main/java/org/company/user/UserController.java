@@ -1,18 +1,21 @@
 package org.company.user;
 
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+
+import jakarta.servlet.http.HttpServletRequest;
 import org.company.user.web.CreateUserRequest;
 import org.company.user.web.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -25,16 +28,20 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public Map<String, Object> myself(@AuthenticationPrincipal Jwt jwt) {
+//    public Map<String, Object> myself(@AuthenticationPrincipal Jwt jwt) {
+    public Map<String, Object> myself(@AuthenticationPrincipal OAuth2User jwt) {
 
+//
+        System.out.println(jwt);
+//orig below
         Map<String, Object> result = new HashMap<>();
-        Optional<User> userByAuthServerId = userService.findUserByAuthServerId(new AuthServerId(UUID.fromString(jwt.getSubject())));
-
-        userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
-
-
-        result.put("subject", jwt.getSubject());
-        result.put("claims", jwt.getClaims());
+//        Optional<User> userByAuthServerId = userService.findUserByAuthServerId(new AuthServerId(UUID.fromString(jwt.getSubject())));
+//
+//        userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
+//
+//
+//        result.put("subject", jwt.getSubject());
+//        result.put("claims", jwt.getClaims());
 
         return result;
     }

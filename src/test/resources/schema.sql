@@ -12,15 +12,15 @@ create table IF NOT EXISTS customer
   contact_info TEXT
 );
 
-create table IF NOT EXISTS users
+create table IF NOT EXISTS user_profile
 (
   id BIGINT PRIMARY KEY,
-  authProvider TEXT,
-  authServerId TEXT,
+  auth_server_id UUID,
+  userId UUID,
   name TEXT,
   email TEXT NOT NULL,
   username TEXT,
-  password TEXT,
+  mobile_token TEXT,
   organization_id BIGSERIAL,
   FOREIGN KEY (organization_id ) REFERENCES organization(id)
 );

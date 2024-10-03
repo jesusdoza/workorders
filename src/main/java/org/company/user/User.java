@@ -7,21 +7,29 @@ import java.util.UUID;
 
 import jakarta.validation.constraints.NotNull;
 
+
 @Entity
-@Table(name = "users")
+@Table(name = "user_profile")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private UUID userId = UUID.randomUUID();
 
-
-    @Column(unique = true)
+    //    @Column(name = "auth_provider")
+//    private String authProvider; // incase of using multi auth providers
+    @Column(name = "auth_server_id")
     private AuthServerId authServerId;// when using oauth this id is used to identify record
+
+
+    private String name;
     private String email;
     private String username;
+
+    @Column(name = "mobile_token")
     private String mobileToken; //used to send data to user app
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @NotNull
@@ -110,5 +118,13 @@ public class User {
                 ", mobileToken='" + mobileToken + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
