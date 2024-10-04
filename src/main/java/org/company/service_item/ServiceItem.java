@@ -1,9 +1,6 @@
 package org.company.service_item;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "service_item")
 public class ServiceItem {
@@ -13,16 +10,25 @@ public class ServiceItem {
     private Long id;
 
     private String description;
+
     private String name;
+
     private String image;
-    private String part_number;
+
+    @Column(name = "part_number")
+    private String partNumber;
+
     private String manufacturer;
 
-    private String serial_number;
+    @Column(name = "serial_number")
+    private String serialNumber;
+
+    @Column(name = "organization_id")
+    private Long organizationId;
 
     public ServiceItem(String name, String serial) {
         this.name = name;
-        this.serial_number = serial;
+        this.serialNumber = serial;
     }
 
     public ServiceItem() {
@@ -62,11 +68,11 @@ public class ServiceItem {
     }
 
     public String getPart_number() {
-        return part_number;
+        return partNumber;
     }
 
     public void setPart_number(String part_number) {
-        this.part_number = part_number;
+        this.partNumber = part_number;
     }
 
     public String getManufacturer() {
@@ -78,10 +84,48 @@ public class ServiceItem {
     }
 
     public String getSerial_number() {
-        return serial_number;
+        return serialNumber;
     }
 
     public void setSerial_number(String serial_number) {
-        this.serial_number = serial_number;
+        this.serialNumber = serial_number;
+    }
+
+    public String getPartNumber() {
+        return partNumber;
+    }
+
+    public void setPartNumber(String partNumber) {
+        this.partNumber = partNumber;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceItem{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", partNumber='" + partNumber + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", organizationId=" + organizationId +
+                '}';
     }
 }

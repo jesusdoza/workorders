@@ -9,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,14 +21,19 @@ public class WebSecurityConfiguration {
     @Bean
     SecurityFilterChain configureSecurityFilterChain(HttpSecurity http) throws Exception {
 
+//ALLOW ALL FOR TESTING
+//        http.authorizeHttpRequests(authorizeRequest ->
+//                authorizeRequest.anyRequest().permitAll()).csrf(csrf ->
+//                csrf.disable());
+
         //allow any OPTIONS requests to any api route
         // all other requests must be authenticated
+        //AUTHENTICATE ALL API ENDPOINTS
         http.authorizeHttpRequests(authorizeRequest ->
-                authorizeRequest.anyRequest().permitAll()).csrf(csrf ->
-                csrf.disable());
-//                authorizeRequest.requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
-//                        .requestMatchers("/api/**").authenticated()
-//                        .anyRequest().authenticated()).oauth2ResourceServer(it -> it.jwt(Customizer.withDefaults()));
+                        authorizeRequest.requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
+                                .requestMatchers("/api/**").authenticated()
+                                .anyRequest().authenticated()).oauth2ResourceServer(it -> it.jwt(Customizer.withDefaults()))
+                .csrf(AbstractHttpConfigurer::disable);
 
 
         return http.build();

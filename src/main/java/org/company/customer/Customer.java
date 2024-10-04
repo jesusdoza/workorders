@@ -1,10 +1,7 @@
 package org.company.customer;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "customer")
 public class Customer {
@@ -14,6 +11,8 @@ public class Customer {
     private String name;
     private String company;
     private String contact_info;
+    @Column(name = "organization_id")
+    private Long organizationId;
 
 
     public Customer(Long id, String name, String company) {
@@ -58,6 +57,22 @@ public class Customer {
         this.contact_info = contact_info;
     }
 
+    public Long getOrganization_id() {
+        return organizationId;
+    }
+
+    public void setOrganization_id(Long organization_id) {
+        this.organizationId = organization_id;
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -65,6 +80,7 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", company='" + company + '\'' +
                 ", contact_info='" + contact_info + '\'' +
+                ", organizationId=" + organizationId +
                 '}';
     }
 }

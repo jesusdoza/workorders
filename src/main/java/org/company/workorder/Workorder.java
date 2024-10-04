@@ -9,25 +9,70 @@ import java.time.LocalDateTime;
 public class Workorder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime dateArrived = LocalDateTime.now();
+    private LocalDateTime modifiedAt = LocalDateTime.now();
     private String title = "";
-    private String notes = "";
-    private String description = "";
-    private LocalDateTime date_arrived = LocalDateTime.now();
-    private LocalDateTime created_at = LocalDateTime.now();
     private String status = "pending";
-    private Long service_item_id;
+    private String description = "";
+    private String notes = "";
     @Column(name = "technician_id")
-    private Long technician;
-    private Long customer_id;
+    private Long technicianId;
+    @Column(name = "customer_id")
+    private Long customerId;
 
     public Workorder() {
 
     }
 
+    //stored in another table with serviceitem to work order relations
+//    @Column(name = "service_item_id")
+//    private Long serviceItemId;
+
     public Workorder(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Workorder{" +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", dateArrived=" + dateArrived +
+                ", modifiedAt=" + modifiedAt +
+                ", title='" + title + '\'' +
+                ", status='" + status + '\'' +
+                ", description='" + description + '\'' +
+                ", notes='" + notes + '\'' +
+                ", technicianId=" + technicianId +
+                ", customerId=" + customerId +
+                '}';
+    }
+
+    public LocalDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public LocalDateTime getDateArrived() {
+        return dateArrived;
+    }
+
+    public void setDateArrived(LocalDateTime dateArrived) {
+        this.dateArrived = dateArrived;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getTitle() {
@@ -38,13 +83,13 @@ public class Workorder {
         this.title = title;
     }
 
-    public Long getService_item_id() {
-        return service_item_id;
-    }
-
-    public void setService_item_id(Long service_item_id) {
-        this.service_item_id = service_item_id;
-    }
+//    public Long getService_item_id() {
+//        return serviceItemId;
+//    }
+//
+//    public void setService_item_id(Long service_item_id) {
+//        this.serviceItemId = service_item_id;
+//    }
 
     public long getId() {
         return this.id;
@@ -71,19 +116,19 @@ public class Workorder {
     }
 
     public LocalDateTime getDate_arrived() {
-        return this.date_arrived;
+        return this.dateArrived;
     }
 
     public void setDate_arrived(LocalDateTime date_arrived) {
-        this.date_arrived = date_arrived;
+        this.dateArrived = date_arrived;
     }
 
     public LocalDateTime getCreated_at() {
-        return this.created_at;
+        return this.createdAt;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+        this.createdAt = created_at;
     }
 
     public String getStatus() {
@@ -95,19 +140,35 @@ public class Workorder {
     }
 
     public Long getTechnician() {
-        return this.technician;
+        return this.technicianId;
     }
 
     public void setTechnician(Long technician) {
-        this.technician = technician;
+        this.technicianId = technician;
     }
 
 
     public Long getCustomer_id() {
-        return this.customer_id;
+        return this.customerId;
     }
 
     public void setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
+        this.customerId = customer_id;
+    }
+
+    public Long getTechnicianId() {
+        return technicianId;
+    }
+
+    public void setTechnicianId(Long technicianId) {
+        this.technicianId = technicianId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

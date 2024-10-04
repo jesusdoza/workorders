@@ -31,7 +31,7 @@ public class UserStoreTest {
         List<User> items = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            User user = new User(new AuthServerId(UUID.randomUUID()), "bob1@bob.com", "password", roles, UUID.randomUUID().toString());
+            User user = new User(UUID.randomUUID().toString(), "bob1@bob.com", "password", roles, UUID.randomUUID().toString());
             items.add(user);
 
         }

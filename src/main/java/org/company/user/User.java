@@ -20,7 +20,8 @@ public class User {
     //    @Column(name = "auth_provider")
 //    private String authProvider; // incase of using multi auth providers
     @Column(name = "auth_server_id")
-    private AuthServerId authServerId;// when using oauth this id is used to identify record
+//    private AuthServerId authServerId;// when using oauth this id is used to identify record
+    private String authServerId;// when using oauth this id is used to identify record
 
 
     private String name;
@@ -35,9 +36,12 @@ public class User {
     @NotNull
     private Set<UserRole> roles = Set.of(UserRole.USER);
 
+    @Column(name = "organization_id")
+    private Long organizationId;
+
 
     //oauth user with specified uuid
-    public User(AuthServerId authServerId, String username, String email, Set<UserRole> roles, String mobileToken) {
+    public User(String authServerId, String username, String email, Set<UserRole> roles, String mobileToken) {
 
         this.email = email;
         this.username = username;
@@ -59,11 +63,11 @@ public class User {
         this.username = username;
     }
 
-    public AuthServerId getAuthServerId() {
+    public String getAuthServerId() {
         return authServerId;
     }
 
-    public void setAuthServerId(AuthServerId authServerId) {
+    public void setAuthServerId(String authServerId) {
         this.authServerId = authServerId;
     }
 
@@ -107,24 +111,34 @@ public class User {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", authServerId=" + authServerId +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", mobileToken='" + mobileToken + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", authServerId='" + authServerId + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", mobileToken='" + mobileToken + '\'' +
+                ", roles=" + roles +
+                ", organizationId=" + organizationId +
+                '}';
     }
 }
