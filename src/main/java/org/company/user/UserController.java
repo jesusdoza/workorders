@@ -29,21 +29,15 @@ public class UserController {
 
     @GetMapping("/me")
     public Map<String, Object> myself(@AuthenticationPrincipal Jwt jwt) {
-//    public Map<String, Object> myself(@AuthenticationPrincipal OAuth2User jwt) {
-
-//
-        System.out.println(jwt.getClaims());
-//orig below
         Map<String, Object> result = new HashMap<>();
         Optional<User> userByAuthServerId = userService.findUserByAuthServerId(jwt.getSubject());
-//
+
         userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
 
         if (userByAuthServerId.isEmpty()) {
             System.out.println("no user by issuer found");
         }
-//
-//
+
         result.put("subject", jwt.getSubject());
         result.put("claims", jwt.getClaims());
 
