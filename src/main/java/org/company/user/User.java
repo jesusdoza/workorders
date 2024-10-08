@@ -17,10 +17,11 @@ public class User {
 
     private UUID userId = UUID.randomUUID();
 
-    //    @Column(name = "auth_provider")
-//    private String authProvider; // incase of using multi auth providers
+    @Column(name = "auth_provider")
+    private String authProvider;
+
+
     @Column(name = "auth_server_id")
-//    private AuthServerId authServerId;// when using oauth this id is used to identify record
     private String authServerId;// when using oauth this id is used to identify record
 
 
