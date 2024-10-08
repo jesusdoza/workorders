@@ -15,7 +15,7 @@ public class UserService {
     }
 
 
-    public Optional<User> findUserByAuthServerId(AuthServerId authServerId) {
+    public Optional<User> findUserByAuthServerId(String authServerId) {
         return repository.findByAuthServerId(authServerId);
 
     }

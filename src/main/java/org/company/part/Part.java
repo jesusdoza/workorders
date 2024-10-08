@@ -11,11 +11,12 @@ public class Part {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
+    private String vendor;
     private String part_number;
     private String description;
 
-    private String vendor;
-
+    @Column(name = "organization_id")
+    private Long organizationId;
 
     public Part() {
     }
@@ -63,5 +64,25 @@ public class Part {
 
     public void setVendor(String vendor) {
         this.vendor = vendor;
+    }
+
+    @Override
+    public String toString() {
+        return "Part{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", part_number='" + part_number + '\'' +
+                ", description='" + description + '\'' +
+                ", organizationId=" + organizationId +
+                '}';
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
     }
 }

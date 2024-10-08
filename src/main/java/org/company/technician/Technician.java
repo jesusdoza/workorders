@@ -1,10 +1,7 @@
 package org.company.technician;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "technician")
 public class Technician {
@@ -12,7 +9,8 @@ public class Technician {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
-    private Long organization;
+    @Column(name = "organization_id")
+    private Long organizationId;
 
     public Technician(String name) {
         this.name = name;
@@ -40,10 +38,27 @@ public class Technician {
     }
 
     public Long getOrganization() {
-        return organization;
+        return organizationId;
     }
 
     public void setOrganization(Long organization) {
-        this.organization = organization;
+        this.organizationId = organization;
+    }
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    @Override
+    public String toString() {
+        return "Technician{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", organizationId=" + organizationId +
+                '}';
     }
 }

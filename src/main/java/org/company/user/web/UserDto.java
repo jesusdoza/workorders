@@ -10,19 +10,19 @@ public class UserDto {
     private String username;
     private String email;
     private String mobileToken;
-    private UUID authServerId;
+    private String authServerId;
 
-    public UserDto(UUID userId, String username, String email, String mobileToken, AuthServerId authServerId) {
+    public UserDto(UUID userId, String username, String email, String mobileToken, String authServerId) {
         this.userId = userId;
         this.username = username;
         this.email = email;
         this.mobileToken = mobileToken;
-        this.authServerId = authServerId.value();
+        this.authServerId = authServerId;
 
     }
 
     public static UserDto fromUser(User user) {
-        return new UserDto(user.getAuthServerId().value(), user.getUsername(), user.getEmail(), user.getMobileToken(), user.getAuthServerId());
+        return new UserDto(user.getUserId(), user.getUsername(), user.getEmail(), user.getMobileToken(), user.getAuthServerId());
     }
 
 
@@ -58,11 +58,11 @@ public class UserDto {
         this.userId = userId;
     }
 
-    public UUID getAuthServerId() {
+    public String getAuthServerId() {
         return authServerId;
     }
 
-    public void setAuthServerId(UUID authServerId) {
+    public void setAuthServerId(String authServerId) {
         this.authServerId = authServerId;
     }
 }
