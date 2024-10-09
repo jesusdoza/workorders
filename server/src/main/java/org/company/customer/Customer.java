@@ -6,11 +6,12 @@ import jakarta.persistence.*;
 @Entity(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String company;
-    private String contact_info;
+    @Column(name = "contact_info")
+    private String contactInfo;
     @Column(name = "organization_id")
     private Long organizationId;
 
@@ -19,6 +20,13 @@ public class Customer {
         this.id = id;
         this.name = name;
         this.company = company;
+    }
+
+    public Customer(String name, String company, String contactInfo) {
+
+        this.name = name;
+        this.company = company;
+        this.contactInfo = contactInfo;
     }
 
     public Customer() {
@@ -50,11 +58,11 @@ public class Customer {
     }
 
     public String getContact_info() {
-        return contact_info;
+        return contactInfo;
     }
 
     public void setContact_info(String contact_info) {
-        this.contact_info = contact_info;
+        this.contactInfo = contact_info;
     }
 
     public Long getOrganization_id() {
@@ -79,7 +87,7 @@ public class Customer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", company='" + company + '\'' +
-                ", contact_info='" + contact_info + '\'' +
+                ", contact_info='" + contactInfo + '\'' +
                 ", organizationId=" + organizationId +
                 '}';
     }
