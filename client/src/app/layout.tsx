@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils";
 const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Repair Reports Application",
-  description: "Reports database",
+  title: "Work Orders",
+  description: "workorder database",
 };
 
 export default function RootLayout({

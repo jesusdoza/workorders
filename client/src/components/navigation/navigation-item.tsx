@@ -5,11 +5,11 @@ import React from "react";
 import { useParams, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import ActionTooltip from "@/components/action-tooltip";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface NavigationItemProps {
   id: string;
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
   name: string;
 }
 
