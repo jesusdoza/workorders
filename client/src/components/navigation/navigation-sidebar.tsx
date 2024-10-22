@@ -11,6 +11,9 @@ import { NavigationItem } from "@/components/navigation/navigation-item";
 import { ModeToggle } from "@/components/mode-toggle";
 // import { UserButton } from "@clerk/nextjs";
 import imagePlaceHolder from "../../app/favicon.ico";
+import Signout from "../ui/auth/SignoutButton";
+import SignInButton from "../ui/auth/SignInButton";
+import Avatar from "../ui/auth/Avatar";
 
 const NavigationSidebar = async () => {
   const profile = await getUserProfile();
@@ -42,6 +45,12 @@ const NavigationSidebar = async () => {
       </ScrollArea>
       <div className="pb-3 mt-auto items-center flex flex-col gap-y-4">
         <ModeToggle />
+
+        <Signout />
+        <SignInButton />
+
+        <Avatar />
+
         {/* <UserButton
           afterSignOutUrl="/"
           appearance={{
