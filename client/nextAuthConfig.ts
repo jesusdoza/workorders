@@ -5,6 +5,13 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: false,
   callbacks: {
+    async signIn({ user, account, profile, credentials, email }) {
+      console.log("find if user exists");
+      //if no user redirect to first time flow
+
+      // else redirect to dashboard
+      return true;
+    },
     async session({ session, token }) {
       return {
         userId: token.sub,
