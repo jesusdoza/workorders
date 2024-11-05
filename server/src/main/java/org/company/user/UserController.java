@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.company.user.web.CreateUserRequest;
 import org.company.user.web.UserDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -28,20 +29,20 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public Map<String, Object> myself(@AuthenticationPrincipal Jwt jwt) {
+    public ResponseEntity<Map<String, Object>> myself(@AuthenticationPrincipal Jwt jwt) {
         Map<String, Object> result = new HashMap<>();
         Optional<User> userByAuthServerId = userService.findUserByAuthServerId(jwt.getSubject());
 
         userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
 
         if (userByAuthServerId.isEmpty()) {
-            System.out.println("no user by issuer found");
+            return new ResponseEntity<>(new HashMap<>(), HttpStatus.UNAUTHORIZED);
         }
 
         result.put("subject", jwt.getSubject());
         result.put("claims", jwt.getClaims());
 
-        return result;
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("")
