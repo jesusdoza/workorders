@@ -47,14 +47,24 @@ public class UserController {
     }
 
     @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserDto createUser(@AuthenticationPrincipal Jwt jwt, @RequestBody CreateUserRequest request) {
+    public ResponseEntity<UserDto> createUser(@AuthenticationPrincipal Jwt jwt, @RequestBody CreateUserRequest request) {
         CreateUserParameters parameters = request.toParameters(jwt);
+
+        //find user by auth server id
+        Optional<User> foundUser = userService.findUserByAuthServerId(jwt.getSubject());
+        
+        boolean userExists = foundUser.isPresent();
+
+        if (userExists) {
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
 
 
         User user = userService.createUser(parameters);
-
         //create a DTO from user instance
-        return UserDto.fromUser(user);
+        UserDto createdUser = UserDto.fromUser(user);
+
+
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 }
