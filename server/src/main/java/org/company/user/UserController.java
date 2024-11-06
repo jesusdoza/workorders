@@ -31,6 +31,7 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<Map<String, Object>> myself(@AuthenticationPrincipal Jwt jwt) {
         Map<String, Object> result = new HashMap<>();
+
         Optional<User> userByAuthServerId = userService.findUserByAuthServerId(jwt.getSubject());
 
         userByAuthServerId.ifPresent(user -> result.put("userId", user.getId().toString()));
