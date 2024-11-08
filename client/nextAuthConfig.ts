@@ -23,6 +23,13 @@ export const authOptions: AuthOptions = {
         return false;
       }
     },
+
+    async redirect({ url }) {
+      // async redirect({ url, baseUrl }) {
+      //can compare where the redirect is going and take some action stops auth flow
+      //TODO when error sign in show user reason
+      return url;
+    },
     async session({ session, token }) {
       return {
         userId: token.sub,
