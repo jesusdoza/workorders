@@ -1,21 +1,27 @@
 import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { getUserProfile } from "@/lib/user/userApi";
+import { getUserProfile, createUserProfile } from "@/lib/user/userApi";
 
 export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: false,
   callbacks: {
-    async signIn({ user, account, profile, credentials, email }) {
-      //TODO check for user profile on backend
-      const userIdToken = account?.id_token;
-      const userProfile = await getUserProfile(userIdToken);
+    // async signIn({ user, account, profile, credentials, email }) {
+    async signIn({ account }) {
+      try {
+        const userIdToken = account?.id_token;
+        let userProfile = await getUserProfile(userIdToken);
 
-      if (!userProfile) {
-        console.log("no user profile found", userProfile);
+        if (!userProfile) {
+          console.log("no user profile found");
+          userProfile = await createUserProfile(userIdToken);
+        }
+
+        return true;
+      } catch (error) {
+        console.log("signin callback failed", String(error).slice(0, 10));
+        return false;
       }
-
-      return true;
     },
     async session({ session, token }) {
       return {
